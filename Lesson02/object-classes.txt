@@ -1,0 +1,23 @@
+Đối tượng (Object): Là một thực thể vật lý có nhiều đặc điểm, thông tin
+Ví dụ: Cái ghế, cái ly
+Lớp (Class): Là bản thiết kế hay khuôn mẫu để tạo ra đối tượng
+Ví dụ: Đối tượng là cái bánh thì lớp là khuôn để đúc bánh, tạo ra hàng loạt cái bánh.
+
+Cú pháp khai báo lớp
+class <Tên lớp>:
+    # Thuộc tính
+    # Phương thức
+Cú pháp khởi tạo đối tượng
+<Tên đối tượng> = <Tên lớp>()
+
+Phương thức (Methods): Là những thao tác, hành động mà đối tượng đó có thể thực hiện
+Cú pháp: 
+class <Tên lớp>:
+    def <Tên phương thức>(self, <Tham số>):
+        <Khối lệnh>
+
+Từ khoá self là từ chỉ bản thân của đối tượng, từ self có thể truy cập các thuộc tính của đối tượng 
+
+Phương thức __init__()
+    Phương thức này có chức năng gán tự động thuộc tính cho đối tượng khi mới khởi tạo. Mặt khác khi đã có __init__() thì không cần khai báo thuộc tính biến trong phần mô tả của biến
+
