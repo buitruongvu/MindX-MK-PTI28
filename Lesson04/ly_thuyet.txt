@@ -1,0 +1,5 @@
+CRUD 
+C - Create -> add
+R - Read -> get
+U - Update -> edit
+D - Delete

@@ -1,0 +1,89 @@
+BÀI TẬP THỰC HÀNH PYTHON
+Chủ đề: Khái Niệm Dữ Liệu, Vai Trò & Xử Lý Định Dạng JSON
+
+---
+Bài tập 1: Trích xuất và lọc dữ liệu cấu hình/người dùng
+Mức độ: Trung bình
+
+* Tình huống (Vai trò của dữ liệu):
+Trong các ứng dụng, dữ liệu JSON thường được dùng để nhận danh sách người dùng từ API (máy chủ). Ứng dụng client cần phân tích cú pháp (parse) dữ liệu này và chỉ hiển thị những thông tin phù hợp.
+
+* Yêu cầu:
+Cho một chuỗi JSON chứa danh sách người dùng. Hãy viết chương trình Python để:
+1. Chuyển chuỗi JSON thành cấu trúc dữ liệu Python.
+2. Lọc ra những người dùng đang hoạt động (is_active: true) và có độ tuổi từ 18 trở lên.
+3. Tạo ra một chuỗi JSON mới chỉ chứa id và name của những người dùng thỏa mãn điều kiện, được định dạng thụt lề (indent) để dễ đọc.
+
+* Dữ liệu đầu vào (chuỗi JSON):
+json_input = '''
+[
+    {"id": 1, "name": "Nguyen Van A", "age": 17, "is_active": true},
+    {"id": 2, "name": "Tran Thi B", "age": 22, "is_active": false},
+    {"id": 3, "name": "Le Van C", "age": 25, "is_active": true},
+    {"id": 4, "name": "Pham Thi D", "age": 19, "is_active": true}
+]
+'''
+
+---
+Bài tập 2: Tổng hợp dữ liệu đa tầng (Nested JSON) & Tính toán
+Mức độ: Khó
+
+* Tình huống (Vai trò của dữ liệu):
+Dữ liệu trả về từ các hệ thống thương mại điện tử thường rất phức tạp (nhiều tầng lồng nhau). Ứng dụng cần bóc tách các tầng dữ liệu này để tính toán doanh thu tổng kết.
+
+* Yêu cầu:
+Bạn nhận được một chuỗi JSON chứa thông tin các đơn hàng. Mỗi đơn hàng chứa danh sách các mặt hàng (items), mỗi mặt hàng có giá (price) và số lượng (quantity).
+1. Phân tích chuỗi JSON.
+2. Tính tổng giá trị của mỗi đơn hàng.
+3. Tính tổng doanh thu của tất cả các đơn hàng cộng lại.
+4. Xuất ra một chuỗi JSON báo cáo có cấu trúc như sau:
+{"total_revenue": <tổng_tiền>, "orders_summary": [{"order_id": "...", "order_total": <tổng_đơn_hàng>}]}
+
+* Dữ liệu đầu vào:
+orders_json = '''
+{
+    "store_id": "VN_001",
+    "orders": [
+        {
+            "order_id": "ORD1001",
+            "customer": "Nguyen A",
+            "items": [
+                {"product": "Laptop", "price": 1500, "quantity": 1},
+                {"product": "Mouse", "price": 50, "quantity": 2}
+            ]
+        },
+        {
+            "order_id": "ORD1002",
+            "customer": "Tran B",
+            "items": [
+                {"product": "Keyboard", "price": 100, "quantity": 1},
+                {"product": "Monitor", "price": 300, "quantity": 2}
+            ]
+        }
+    ]
+}
+'''
+
+---
+Bài tập 3: Xử lý lỗi (Exception Handling) và Cập nhật trạng thái
+Mức độ: Khó
+
+* Tình huống (Vai trò của dữ liệu):
+Trong ứng dụng, dữ liệu nhận được không phải lúc nào cũng hoàn hảo. Có thể JSON bị hỏng định dạng trong quá trình truyền tải, hoặc thiếu các trường (keys) quan trọng. Việc đảm bảo tính toàn vẹn của dữ liệu là vai trò cốt lõi của lập trình viên.
+
+* Yêu cầu:
+Viết một hàm Python update_inventory(json_string, new_items_list) nhận vào chuỗi JSON biểu diễn kho hàng hiện tại và một danh sách các mặt hàng mới nhập kho (list of dictionaries).
+1. Nếu json_string bị lỗi định dạng (không parse được), hàm phải bắt lỗi json.JSONDecodeError và in ra cảnh báo, trả về None.
+2. Nếu chuỗi hợp lệ, tiến hành cộng dồn số lượng (stock) của các mặt hàng mới vào kho hiện tại dựa trên item_id. Nếu item_id chưa có trong kho, thêm mới mặt hàng đó vào.
+3. Trả về chuỗi JSON trạng thái kho hàng mới nhất.
+
+* Dữ liệu đầu vào thử nghiệm:
+# Tình huống 1: JSON hợp lệ
+valid_inventory_json = '{"ITEM_1": {"name": "Bút bi", "stock": 50}, "ITEM_2": {"name": "Thước kẻ", "stock": 20}}'
+new_items = [
+    {"item_id": "ITEM_1", "name": "Bút bi", "quantity": 30},
+    {"item_id": "ITEM_3", "name": "Cục tẩy", "quantity": 100}
+]
+
+# Tình huống 2: JSON lỗi (thiếu dấu ngoặc kép ở ITEM_1)
+invalid_inventory_json = '{ITEM_1: {"name": "Bút bi", "stock": 50}}'
