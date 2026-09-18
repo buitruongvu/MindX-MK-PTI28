@@ -1,0 +1,12 @@
+Dữ liệu: Là tập hợp các thông tin được thu thập, lưu trữ và xử lý để sử dụng cho nhiều mục đích khác nhau.
+      - Lưu trữ thông tin ứng dụng
+      - Lưu trữ dữ liệu người dùng
+      - Phát triển tính năng
+
+JSON (Javascript Object Notation): Text-based data format -> Định dạng dữ liệu dựa trên văn bản.
+
+JSON được tạo thành từ các cặp key - value:
+      - Key: string
+      - Value: string, int, float,list, object
+
+

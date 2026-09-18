@@ -1,6 +1,7 @@
 import operator
 from datetime import datetime
 
+
 class AnimeItem:
     def __init__(self, anime_id, title, release_date, image=None, rating=None, link=None):
         self.id = anime_id
